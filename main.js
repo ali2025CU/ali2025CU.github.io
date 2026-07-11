@@ -12,7 +12,11 @@ const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").mat
 function cardHTML(item, i) {
   const tags = (item.tags || []).map((t) => `<span class="pill">${esc(t)}</span>`).join("");
   const links = (item.links || [])
-    .map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} →</a>`)
+    .map((l) => {
+      const ext = /^https?:/.test(l.url) ? ` target="_blank" rel="noopener"` : "";
+      const dl = l.download ? " download" : "";
+      return `<a href="${esc(l.url)}"${ext}${dl}>${esc(l.label)}</a>`;
+    })
     .join("");
   const colors = ["#0058A8", "#22D3EE", "#2B8FE0"];
   const delay = Math.min(i * 60, 360);

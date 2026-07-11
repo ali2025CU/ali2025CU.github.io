@@ -77,18 +77,21 @@ const SECTIONS = {
 
   apps: [
     {
-      title: "Placeholder: Learning app name",
-      meta: "Web app · 2026",
+      title: "Flashcards (demo app)",
+      meta: "Web app · Live · 2026",
       description:
-        "What the app teaches, who it's for, and the learning-design principles behind it.",
-      tags: ["Learning design", "EdTech"],
-      links: [{ label: "Try it", url: "#" }, { label: "Code", url: "#" }],
+        "A working demo: flip-card retrieval practice on learning-science concepts. Use it right in the browser, or download it to customize the deck. Replace this with your own apps as you build them.",
+      tags: ["Learning design", "Retrieval practice", "Demo"],
+      links: [
+        { label: "▶ Use the app", url: "apps/flashcards/" },
+        { label: "⬇ Download", url: "downloads/flashcards.zip", download: true },
+      ],
     },
     {
-      title: "Placeholder: Instructional design project",
-      meta: "Design case · 2025",
+      title: "Placeholder: your next learning app",
+      meta: "Coming soon",
       description:
-        "A design case: the problem, your design decisions, and what you learned.",
+        "To add an app: put its folder in apps/, a zip in downloads/, then copy the links pattern from the Flashcards card above.",
       tags: ["Instructional design"],
       links: [],
     },
