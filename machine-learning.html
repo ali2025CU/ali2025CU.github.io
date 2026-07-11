@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Machine Learning — Ali Ebrahimpourlighvani</title>
+  <meta name="description" content="ML projects, analyses of educational data, and methods tutorials." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">
+        <span class="mark">A</span>
+        <span class="name">Ali Ebrahimpourlighvani</span>
+      </a>
+      <button id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="academic.html">Academic Work</a></li>
+        <li><a href="learning-apps.html">Learning Apps</a></li>
+        <li><a href="leadership.html">Leadership</a></li>
+        <li><a href="machine-learning.html">Machine Learning</a></li>
+        <li><a href="ai-models.html">AI Models</a></li>
+        <li><a href="agentic-ai.html">Agentic AI</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="blob" style="width:420px;height:420px;background:#0058A8;top:-160px;left:-120px;opacity:.35"></div>
+    <div class="blob" style="width:340px;height:340px;background:#22D3EE;top:-60px;right:-100px;animation-delay:-7s;opacity:.3"></div>
+    <header class="page-hero-inner reveal">
+      <span class="tag" style="margin-bottom:1.2rem"><span class="dot"></span> Ali Ebrahimpourlighvani</span>
+      <h1>Machine <b>Learning.</b></h1>
+      <p class="lede">ML projects, analyses of educational data, and methods tutorials.</p>
+    </header>
+  </div>
+
+  <main class="page-main">
+    <div id="cards" class="grid"></div>
+  </main>
+
+  <footer>
+    <div class="blob" style="width:400px;height:400px;background:#0058A8;bottom:-200px;right:-100px;opacity:.3"></div>
+    <div class="footer-inner">
+      <div class="big">Let's build the future<br />of <b>learning together.</b></div>
+      <div class="footer-links"><a href="mailto:ae2936@tc.columbia.edu">Email</a><a href="index.html#contact">All links</a></div>
+    </div>
+    <div class="footer-base">
+      <span>&copy; <span data-year></span> Ali Ebrahimpourlighvani</span>
+      <span>Teachers College, Columbia University</span>
+    </div>
+  </footer>
+
+  <script src="data/content.js"></script>
+  <script src="js/main.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", () => renderSection("ml"));</script>
+</body>
+</html>
