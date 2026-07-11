@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ali Ebrahimpourlighvani — AI in Education Researcher</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            columbia: {
+              base: '#0058A8',
+              light: '#3B8FD8',
+              dark: '#003D7A',
+              pale: '#E8F0F9',
+              ghost: '#F2F7FC'
+            },
+            cyan: {
+              accent: '#00D4FF',
+              glow: 'rgba(0, 212, 255, 0.15)'
+            }
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            body: ['"Inter"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
+    html { 
+      scroll-behavior: smooth; 
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #FAFBFC;
+      color: #0F172A;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Custom Cursor ── */
+    .cursor-dot {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: #0058A8;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s ease, opacity 0.2s ease;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      position: fixed;
+      width: 32px;
+      height: 32px;
+      border: 1.5px solid #0058A8;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.25s ease-out, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+    }
+    .cursor-ring.hovering {
+      width: 48px;
+      height: 48px;
+      border-color: #00D4FF;
+      background: rgba(0, 212, 255, 0.05);
+    }
+
+    /* ── Scroll Reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ── Hero Animations ── */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(2deg); }
+    }
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(20px) rotate(-2deg); }
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); opacity: 0.4; }
+      50% { transform: scale(1.08); opacity: 0.6; }
+    }
+    @keyframes orbit {
+      from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+      to { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+    }
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes drawLine {
+      from { stroke-dashoffset: 1000; }
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .float-anim { animation: float 7s ease-in-out infinite; }
+    .float-anim-alt { animation: floatReverse 9s ease-in-out infinite; }
+    .gradient-animate {
+      background-size: 300% 300%;
+      animation: gradientShift 12s ease infinite;
+    }
+    .breathe-anim { animation: breathe 6s ease-in-out infinite; }
+    .orbit-anim { animation: orbit 20s linear infinite; }
+    .spin-slow { animation: spinSlow 60s linear infinite; }
+
+    .marquee-track {
+      animation: marquee 30s linear infinite;
+    }
+
+    /* ── Hero Background Mesh ── */
+    .hero-bg {
+      background:
+        radial-gradient(ellipse 600px 600px at 15% 25%, rgba(0, 88, 168, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 500px at 85% 75%, rgba(0, 212, 255, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 400px at 50% 50%, rgba(0, 88, 168, 0.03) 0%, transparent 70%),
+        linear-gradient(180deg, #FAFBFC 0%, #F0F5FA 40%, #E8F0F9 100%);
+    }
+
+    /* ── Noise Texture ── */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9997;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 128px 128px;
+    }
+
+    /* ── Bento Card Tilt ── */
+    .bento-card {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+      transform-style: preserve-3d;
+    }
+    .bento-card:hover {
+      box-shadow: 0 24px 48px -8px rgba(0, 88, 168, 0.12), 0 0 0 1px rgba(0, 88, 168, 0.06);
+    }
+
+    /* ── Timeline ── */
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: linear-gradient(180deg, transparent 0%, #CBD5E1 5%, #CBD5E1 95%, transparent 100%);
+    }
+    .timeline-dot {
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .timeline-item:hover .timeline-dot {
+      transform: scale(1.5);
+      background: #0058A8;
+      box-shadow: 0 0 0 6px rgba(0, 88, 168, 0.15);
+    }
+
+    /* ── Glass Morphism ── */
+    .glass {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(20px) saturate(1.2);
+      -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    }
+    .glass-strong {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(30px) saturate(1.3);
+      -webkit-backdrop-filter: blur(30px) saturate(1.3);
+    }
+
+    /* ── Typography ── */
+    .hero-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .section-heading {
+      font-family: 'Playfair Display', Georgia, serif;
+      letter-spacing: -0.025em;
+    }
+
+    /* ── Image Treatment ── */
+    .portrait-ring {
+      position: relative;
+    }
+    .portrait-ring::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #0058A8, #00D4FF, #3B8FD8, #0058A8);
+      z-index: -1;
+      animation: spinSlow 8s linear infinite;
+    }
+    .portrait-ring::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px dashed rgba(0, 88, 168, 0.2);
+      animation: spinSlow 30s linear infinite reverse;
+    }
+
+    /* ── Button Shine ── */
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shine::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+    .btn-shine:hover::after {
+      transform: translateX(100%);
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { 
+      width: 6px; 
+    }
+    ::-webkit-scrollbar-track { 
+      background: transparent; 
+    }
+    ::-webkit-scrollbar-thumb { 
+      background: #CBD5E1; 
+      border-radius: 3px; 
+    }
+    ::-webkit-scrollbar-thumb:hover { 
+      background: #94A3B8; 
+    }
+
+    /* ── Tag / Pill ── */
+    .tag-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── Decorative SVG Stroke ── */
+    .stroke-draw {
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: drawLine 3s ease-out forwards;
+    }
+
+    /* ── Section Number ── */
+    .section-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(0, 88, 168, 0.12);
+      position: absolute;
+      top: -3rem;
+      left: -1rem;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    @media (max-width: 768px) {
+      .section-num { 
+        font-size: 5rem; 
+        top: -1.5rem; 
+      }
+    }
+
+    /* ── Link Underline Animation ── */
+    .link-underline {
+      position: relative;
+    }
+    .link-underline::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: currentColor;
+      transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .link-underline:hover::after {
+      width: 100%;
+    }
+
+    /* ── Card Icon Glow on Hover ── */
+    .bento-card:hover .card-icon-bg {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(0, 88, 168, 0.2);
+    }
+
+    /* ── Smooth Image Placeholder ── */
+    .img-placeholder {
+      background: linear-gradient(135deg, #E8F0F9 0%, #D4E4F2 50%, #E8F0F9 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease infinite;
+    }
+  </style>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cu:#0058A8;
+    --cu-deep:#003E75;
+    --cu-light:#2B8FE0;
+    --cyan:#22D3EE;
+    --ink:#0B1B2B;
+    --paper:#F6F8FB;
+    --paper-2:#EEF3F9;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  .t1-display{font-family:'Fraunces',serif;font-optical-sizing:auto;letter-spacing:-0.02em}
+  .font-mono{font-family:'JetBrains Mono',monospace}
+
+  /* Animated gradient blobs */
+  .blob{
+    position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;
+    mix-blend-mode:multiply;animation:float 18s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%,100%{transform:translate(0,0) scale(1)}
+    33%{transform:translate(40px,-30px) scale(1.15)}
+    66%{transform:translate(-30px,25px) scale(.95)}
+  }
+  .grad-text{
+    background:linear-gradient(100deg,var(--cu) 0%,var(--cu-light) 40%,var(--cyan) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    background-size:200% auto;animation:shine 6s linear infinite;
+  }
+  @keyframes shine{to{background-position:200% center}}
+
+  /* Grid noise */
+  .grain{
+    position:absolute;inset:0;pointer-events:none;opacity:.04;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* Reveal */
+  
+  
+
+  /* Bento card */
+  .bento{
+    position:relative;overflow:hidden;border-radius:22px;
+    background:#fff;border:1px solid rgba(11,27,43,.08);
+    box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 18px 40px -28px rgba(0,88,168,.35);
+    transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s,border-color .4s;
+    transform-style:preserve-3d;will-change:transform;
+  }
+  .bento:hover{
+    border-color:rgba(0,88,168,.35);
+    box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 30px 60px -24px rgba(0,88,168,.45);
+  }
+  .bento .sheen{
+    position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(34,211,238,.18) 50%,transparent 70%);
+    transform:translateX(-120%);transition:transform .9s ease;
+  }
+  .bento:hover .sheen{transform:translateX(120%)}
+  .bento .corner-grad{
+    position:absolute;width:240px;height:240px;border-radius:50%;
+    filter:blur(40px);opacity:.5;transition:opacity .4s;
+  }
+  .bento:hover .corner-grad{opacity:.85}
+  .icon-tile{
+    width:54px;height:54px;border-radius:14px;display:grid;place-items:center;
+    background:linear-gradient(135deg,rgba(0,88,168,.12),rgba(34,211,238,.18));
+    color:var(--cu);transition:transform .4s cubic-bezier(.2,.7,.2,1);
+  }
+  .bento:hover .icon-tile{transform:translateY(-2px) rotate(-6deg) scale(1.06)}
+  .tag{
+    display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;
+    padding:4px 10px;border-radius:999px;background:rgba(0,88,168,.08);color:var(--cu-deep);
+    font-family:'JetBrains Mono',monospace;letter-spacing:.02em;
+  }
+
+  /* Timeline */
+  .tl-line{position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cu),var(--cyan));top:8px}
+  .tl-dot{
+    width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--cu);
+    box-shadow:0 0 0 4px rgba(0,88,168,.12);transition:transform .3s,box-shadow .3s;
+  }
+  .tl-item:hover .tl-dot{transform:scale(1.25);box-shadow:0 0 0 6px rgba(34,211,238,.25);border-color:var(--cyan)}
+  .tl-item:hover .tl-card{transform:translateY(-4px);border-color:rgba(0,88,168,.3)}
+  .tl-card{transition:transform .35s,border-color .35s}
+
+  /* Buttons */
+  .btn-primary{
+    position:relative;overflow:hidden;color:#fff;border-radius:999px;
+    background:linear-gradient(135deg,var(--cu) 0%,var(--cu-deep) 100%);
+    box-shadow:0 12px 30px -10px rgba(0,88,168,.6),0 0 0 1px rgba(255,255,255,.1) inset;
+    transition:transform .3s,box-shadow .3s;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px -10px rgba(0,88,168,.7)}
+  .btn-primary::after{
+    content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+    transform:skewX(-20deg);transition:left .7s;
+  }
+  .btn-primary:hover::after{left:130%}
+  .btn-ghost{
+    border-radius:999px;color:var(--cu-deep);background:#fff;border:1px solid rgba(0,88,168,.25);
+    transition:all .3s;
+  }
+  .btn-ghost:hover{background:var(--cu);color:#fff;border-color:var(--cu);transform:translateY(-2px)}
+
+  /* Portrait frame */
+  .portrait-frame{
+    position:relative;border-radius:28px;overflow:hidden;
+    box-shadow:0 40px 80px -30px rgba(0,62,117,.55),0 0 0 1px rgba(11,27,43,.06);
+  }
+  .portrait-frame::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 40%,rgba(0,62,117,.55) 100%);
+  }
+  .portrait-frame img{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .portrait-frame:hover img{transform:scale(1.05)}
+
+  /* Marquee */
+  .marquee{display:flex;gap:48px;animation:scroll 30s linear infinite;width:max-content}
+  @keyframes scroll{to{transform:translateX(-50%)}}
+
+  /* Nav */
+  .nav-link{position:relative}
+  .nav-link::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;background:var(--cu);transition:width .3s}
+  .nav-link:hover::after{width:100%}
+
+  .ring-dot::before{
+    content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);
+    box-shadow:0 0 0 4px rgba(34,211,238,.25);display:inline-block;margin-right:8px;
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{50%{box-shadow:0 0 0 8px rgba(34,211,238,.1)}}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important}
+  }
+
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+  <!-- Noise Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════════════════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="relative w-10 h-10 rounded-xl bg-columbia-base flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-105">
+            <span class="text-white font-display font-bold text-lg relative z-10">A</span>
+            <div class="absolute inset-0 bg-gradient-to-br from-cyan-accent/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+          <span class="font-display font-semibold text-slate-800 text-sm tracking-wide hidden sm:block">Ali E.</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#research" class="text-[13px] font-medium text-slate-500 hover:text-columbia-base transition-colors duration-300 link-underline">Research</a>
+          <a href="#news" class="text-[13px] font-medium text-slate-500 hover:text-columbia-base transition-colors duration-300 link-underline">News</a>
+          <a href="#about" class="text-[13px] font-medium text-slate-500 hover:text-columbia-base transition-colors duration-300 link-underline">About</a>
+          <a href="#contact" class="text-[13px] font-semibold text-white bg-columbia-base px-5 py-2.5 rounded-full hover:bg-columbia-dark transition-all duration-300 hover:shadow-lg hover:shadow-columbia-base/20 btn-shine">
+            Get in Touch
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuBtn" class="md:hidden w-10 h-10 rounded-xl flex items-center justify-center hover:bg-slate-100 transition-colors">
+          <svg class="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-40 hidden">
+    <div class="absolute inset-0 bg-slate-900/30 backdrop-blur-sm" id="mobileMenuOverlay"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-72 bg-white shadow-2xl p-8 pt-24 transform translate-x-full transition-transform duration-500" id="mobileMenuPanel">
+      <div class="flex flex-col gap-6">
+        <a href="#research" class="text-lg font-medium text-slate-700 hover:text-columbia-base transition-colors">Research</a>
+        <a href="#news" class="text-lg font-medium text-slate-700 hover:text-columbia-base transition-colors">News</a>
+        <a href="#about" class="text-lg font-medium text-slate-700 hover:text-columbia-base transition-colors">About</a>
+        <div class="h-px bg-slate-200 my-2"></div>
+        <a href="#contact" class="text-center text-sm font-semibold text-white bg-columbia-base px-6 py-3 rounded-full hover:bg-columbia-dark transition-colors">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       HERO SECTION
+       ═══════════════════════════════════════════════════════════ -->
+  <!-- HERO -->
+<section id="top" class="relative pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden">
+  <div class="blob" style="width:520px;height:520px;background:#0058A8;top:-120px;left:-100px"></div>
+  <div class="blob" style="width:420px;height:420px;background:#22D3EE;top:120px;right:-80px;animation-delay:-6s"></div>
+  <div class="blob" style="width:380px;height:380px;background:#2B8FE0;bottom:-160px;left:40%;animation-delay:-10s;opacity:.4"></div>
+  <div class="grain"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+    <div class="lg:col-span-7 reveal">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="tag"><span class="w-1.5 h-1.5 rounded-full bg-[var(--cyan)] animate-pulse"></span> Teachers College · Columbia University</span>
+        <span class="text-xs font-mono text-slate-500">New York, NY</span>
+      </div>
+      <h1 class="t1-display font-light text-[clamp(2.6rem,7vw,5.6rem)] leading-[0.98] tracking-tight">
+        Ali <span class="font-semibold">Ebrahimpour</span><br>
+        <span class="grad-text font-semibold">lighvani</span>
+      </h1>
+      <p class="mt-6 text-lg lg:text-xl text-slate-700 max-w-xl leading-relaxed">
+        Doctoral researcher building the bridge between <span class="text-[var(--cu-deep)] font-medium">machine intelligence</span> and <span class="text-[var(--cu-deep)] font-medium">human learning</span> — designing agentic systems that teach, adapt, and reason.
+      </p>
+      <div class="mt-9 flex flex-wrap items-center gap-4">
+        <a href="#research" class="btn-primary px-7 py-3.5 text-sm font-semibold inline-flex items-center gap-2">
+          Explore my research
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#contact" class="btn-ghost px-7 py-3.5 text-sm font-semibold inline-flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M3 7l9 6 9-6M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7l9 6 9-6"/></svg>
+          Read my CV
+        </a>
+      </div>
+      <div class="mt-12 flex items-center gap-8 text-sm text-slate-600">
+        <div><div class="t1-display font-semibold text-2xl text-[var(--cu-deep)]">6</div><div class="text-xs uppercase tracking-wider text-slate-500">Research areas</div></div>
+        <div class="w-px h-10 bg-slate-300"></div>
+        <div><div class="t1-display font-semibold text-2xl text-[var(--cu-deep)]">—</div><div class="text-xs uppercase tracking-wider text-slate-500">Publications</div></div>
+        <div class="w-px h-10 bg-slate-300"></div>
+        <div><div class="t1-display font-semibold text-2xl text-[var(--cu-deep)]">—</div><div class="text-xs uppercase tracking-wider text-slate-500">Learning apps shipped</div></div>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 reveal" style="transition-delay:.15s">
+      <div class="relative">
+        <div class="portrait-frame aspect-[4/5] max-w-md mx-auto">
+          <img src="profile.jpg" alt="Portrait of Ali Ebrahimpourlighvani" class="w-full h-full object-cover" onerror="this.style.display='none';document.getElementById('photo-ph').style.display='flex';">
+          <div id="photo-ph" style="display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#0058A8,#2B8FE0 60%,#22D3EE);color:#fff;text-align:center;padding:20px;">
+            <div class="t1-display" style="font-size:4rem;font-weight:600">AE</div>
+            <small style="max-width:220px;line-height:1.5;opacity:.92">Add your photo: save it as <b>profile.jpg</b> in this website folder</small>
+          </div>
+          <div class="absolute bottom-5 left-5 right-5 z-10 text-white">
+            <div class="font-mono text-[11px] uppercase tracking-widest opacity-80">Currently</div>
+            <div class="t1-display text-lg font-medium mt-1">PhD Candidate, Instructional Technology</div>
+          </div>
+        </div>
+        <!-- floating chips -->
+        <div class="absolute -left-6 top-12 bg-white rounded-2xl shadow-xl shadow-blue-900/10 border border-black/5 px-4 py-3 flex items-center gap-3 hidden sm:flex">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-[var(--cu)] to-[var(--cyan)] grid place-items-center text-white">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+          </div>
+          <div><div class="text-[11px] text-slate-500 font-mono">FOCUS</div><div class="text-sm font-semibold text-slate-800">Agentic AI · Tutoring</div></div>
+        </div>
+        <div class="absolute -right-4 bottom-24 bg-white rounded-2xl shadow-xl shadow-blue-900/10 border border-black/5 px-4 py-3 hidden sm:block">
+          <div class="text-[11px] text-slate-500 font-mono mb-1">LATEST UPDATE</div>
+          <div class="text-sm font-semibold text-slate-800 max-w-[180px] leading-snug">Website launched — more coming soon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Marquee strip -->
+  <div class="relative mt-20 border-y border-black/5 bg-white/40 overflow-hidden">
+    <div class="marquee py-4 text-sm font-mono uppercase tracking-widest text-slate-500">
+      <div class="flex gap-12 items-center">
+        <span>AI in Education</span><span class="text-[var(--cu)]">◆</span>
+        <span>LLM Tutoring Agents</span><span class="text-[var(--cu)]">◆</span>
+        <span>Personalized Learning</span><span class="text-[var(--cu)]">◆</span>
+        <span>Instructional Design</span><span class="text-[var(--cu)]">◆</span>
+        <span>Equity & Access</span><span class="text-[var(--cu)]">◆</span>
+        <span>Human-AI Collaboration</span><span class="text-[var(--cu)]">◆</span>
+      </div>
+      <div class="flex gap-12 items-center" aria-hidden="true">
+        <span>AI in Education</span><span class="text-[var(--cu)]">◆</span>
+        <span>LLM Tutoring Agents</span><span class="text-[var(--cu)]">◆</span>
+        <span>Personalized Learning</span><span class="text-[var(--cu)]">◆</span>
+        <span>Instructional Design</span><span class="text-[var(--cu)]">◆</span>
+        <span>Equity & Access</span><span class="text-[var(--cu)]">◆</span>
+        <span>Human-AI Collaboration</span><span class="text-[var(--cu)]">◆</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <section id="research" class="relative py-28 lg:py-36 overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-columbia-base/3 blur-3xl -translate-y-1/2 translate-x-1/4"></div>
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-cyan-accent/3 blur-3xl translate-y-1/2 -translate-x-1/4"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 relative">
+      <!-- Section Header -->
+      <div class="text-center mb-20 relative">
+        <span class="section-num">01</span>
+        <div class="relative z-10">
+          <span class="tag-pill text-columbia-base font-medium tracking-widest mb-4 block reveal">Research Focus</span>
+          <h2 class="section-heading text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-5 reveal reveal-delay-1">
+            Areas of <em class="text-columbia-base italic">Inquiry</em>
+          </h2>
+          <p class="text-slate-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed reveal reveal-delay-2">
+            Six interconnected domains where artificial intelligence meets the science of learning, each explored through rigorous empirical research and innovative design.
+          </p>
+        </div>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+
+        <!-- Card 1: Academic Work & Projects (Large, spans 2 cols) -->
+        <div class="bento-card group relative bg-white rounded-3xl p-7 lg:p-8 border border-slate-100 lg:col-span-2 overflow-hidden cursor-pointer" data-tilt>
+          <div class="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-columbia-base/5 to-cyan-accent/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
+          <div class="relative z-10 flex flex-col h-full">
+            <div class="card-icon-bg w-14 h-14 rounded-2xl bg-columbia-pale flex items-center justify-center mb-5 transition-all duration-500">
+              <svg class="w-7 h-7 text-columbia-base" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl lg:text-2xl font-bold text-slate-900 mb-2 group-hover:text-columbia-base transition-colors duration-300">Academic Work & Projects</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-5 max-w-md">Peer-reviewed publications, conference presentations, and collaborative research initiatives advancing the theoretical and empirical foundations of AI-enhanced pedagogy.</p>
+            <div class="mt-auto flex items-center gap-2 text-columbia-base font-medium text-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+              <span>View Publications</span>
+              <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/>
+              </svg>
+            </div>
+          </div>
+          <!-- Decorative corner -->
+          <div class="absolute bottom-0 right-0 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity duration-500">
+            <svg viewBox="0 0 100 100" fill="none">
+              <circle cx="80" cy="80" r="60" stroke="#0058A8" stroke-width="0.5"/>
+              <circle cx="80" cy="80" r="40" stroke="#0058A8" stroke-width="0.5"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 2: Learning Apps & Design -->
+        <div class="bento-card group relative bg-white rounded-3xl p-7 lg:p-8 border border-slate-100 overflow-hidden cursor-pointer" data-tilt>
+          <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-accent/5 to-transparent rounded-full blur-xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
+          <div class="relative z-10 flex flex-col h-full">
+            <div class="card-icon-bg w-14 h-14 rounded-2xl bg-cyan-accent/10 flex items-center justify-center mb-5 transition-all duration-500">
+              <svg class="w-7 h-7 text-columbia-base" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold text-slate-900 mb-2 group-hover:text-columbia-base transition-colors duration-300">Learning Apps & Design</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">Designing and evaluating digital learning environments that leverage AI to personalize instruction, scaffold complex thinking, and foster deep engagement.</p>
+            <div class="mt-auto flex items-center gap-2 text-columbia-base font-medium text-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+              <span>See Designs</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Leadership -->
+        <div class="bento-card group relative bg-white rounded-3xl p-7 lg:p-8 border border-slate-100 overflow-hidden cursor-pointer" data-tilt>
+          <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-columbia-base/5 to-transparent rounded-full blur-xl translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
+          <div class="relative z-10 flex flex-col h-full">
+            <div class="card-icon-bg w-14 h-14 rounded-2xl bg-columbia-pale flex items-center justify-center mb-5 transition-all duration-500">
+              <svg class="w-7 h-7 text-columbia-base" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.163 9.38 9.38 0 002.625-.163M15 19.128v-3.75a3.375 3.375 0 00-3.375-3.375h-1.5A3.375 3.375 0 009 15.378v3.75m9-12.375v-1.5a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v1.5m9 12.375a3 3 0 01-3 3m0 0a3 3 0 01-3-3m3 3V10.5m0 0a3 3 0 013-3m-3 3h1.5"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold text-slate-900 mb-2 group-hover:text-columbia-base transition-colors duration-300">Leadership</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">Leading interdisciplinary research teams, mentoring emerging scholars, and shaping institutional strategy for responsible AI integration in higher education.</p>
+            <div class="mt-auto flex items-center gap-2 text-columbia-base font-medium text-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+              <span>Learn More</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Machine Learning (Large, spans 2 cols) -->
+        <div class="bento-card group relative bg-gradient-to-br from-columbia-base to-columbia-dark rounded-3xl p-7 lg:p-8 overflow-hidden cursor-pointer text-white" data-tilt>
+          <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.04%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-30"></div>
+          <div class="absolute top-0 right-0 w-48 h-48 bg-cyan-accent/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+          <div class="relative z-10 flex flex-col h-full">
+            <div class="card-icon-bg w-14 h-14 rounded-2xl bg-white/15 backdrop-blur-sm flex items-center justify-center mb-5 transition-all duration-500">
+              <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl lg:text-2xl font-bold mb-2">Machine Learning</h3>
+            <p class="text-white/70 text-sm leading-relaxed mb-5 max-w-md">Developing and applying supervised, unsupervised, and reinforcement learning algorithms to model student cognition, predict learning outcomes, and optimize adaptive tutoring systems at scale.</p>
+            <div class="mt-auto flex items-center gap-2 text-cyan-accent font-medium text-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+              <span>Explore Methods</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: AI Models -->
+        <div class="bento-card group relative bg-white rounded-3xl p-7 lg:p-8 border border-slate-100 overflow-hidden cursor-pointer" data-tilt>
+          <div class="absolute inset-0 bg-gradient-to-br from-columbia-pale/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="relative z-10 flex flex-col h-full">
+            <div class="card-icon-bg w-14 h-14 rounded-2xl bg-columbia-pale flex items-center justify-center mb-5 transition-all duration-500">
+              <svg class="w-7 h-7 text-columbia-base" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"/>
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold text-slate-900 mb-2 group-hover:text-columbia-base transition-colors duration-300">AI Models</h3>
+            <p class="text-slate-500 text-sm leading-relaxed mb-4">Investigating large language models, multimodal architectures, and generative AI systems to understand their affordances and limitations within educational contexts.</p>
+            <div class="mt-auto flex items-center gap-2 text-columbia-base font-medium text-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+              <span>Read Papers</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: Agentic AI in Education (Full Width on bottom) -->
+        <div class="bento-card group relative bg-white rounded-3xl p-7 lg:p-8 border border-slate-100 lg:col-span-3 overflow-hidden cursor-pointer" data-tilt>
+          <div class="absolute top-0 right-0 w-72 h-72 bg-gradient-to-bl from-cyan-accent/5 to-columbia-base/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 group-hover:scale-125 transition-transform duration-700"></div>
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center gap-6">
+            <div class="flex-shrink-0">
+              <div class="card-icon-bg w-14 h-14 rounded-2xl bg-cyan-accent/10 flex items-center justify-center transition-all duration-500">
+                <svg class="w-7 h-7 text-columbia-base" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-1">
+              <h3 class="font-display text-xl lg:text-2xl font-bold text-slate-900 mb-2 group-hover:text-columbia-base transition-colors duration-300">Agentic AI in Education</h3>
+              <p class="text-slate-500 text-sm lg:text-base leading-relaxed">Pioneering research on autonomous AI agents that act as collaborative learning partners, intelligent tutors, and reflective coaches. Exploring how agentic systems can foster metacognition, scaffold self-regulated learning, and create dynamic, responsive educational ecosystems that adapt in real time to learner needs.</p>
+            </div>
+            <div class="flex-shrink-0">
+              <div class="flex items-center gap-2 text-columbia-base font-medium text-sm opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                <span>Discover</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <!-- Decorative pattern -->
+          <div class="absolute bottom-0 right-0 w-40 h-40 opacity-[0.03] pointer-events-none">
+            <svg viewBox="0 0 100 100" fill="none">
+              <path d="M10 50 Q30 20 50 50 T90 50" stroke="#0058A8" stroke-width="0.5" fill="none"/>
+              <path d="M10 60 Q30 30 50 60 T90 60" stroke="#0058A8" stroke-width="0.5" fill="none"/>
+              <path d="M10 40 Q30 10 50 40 T90 40" stroke="#0058A8" stroke-width="0.5" fill="none"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NEWS & UPDATES TIMELINE
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="news" class="relative py-28 lg:py-36 bg-white overflow-hidden">
+    <!-- Background -->
+    <div class="absolute inset-0 opacity-[0.015]" style="background-image: radial-gradient(circle, #0058A8 1px, transparent 1px); background-size: 48px 48px;"></div>
+    <div class="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full bg-columbia-base/3 blur-3xl"></div>
+
+    <div class="max-w-6xl mx-auto px-6 lg:px-10 relative">
+      <!-- Section Header -->
+      <div class="text-center mb-20 relative">
+        <span class="section-num">02</span>
+        <div class="relative z-10">
+          <span class="tag-pill text-columbia-base font-medium tracking-widest mb-4 block reveal">Latest Updates</span>
+          <h2 class="section-heading text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-5 reveal reveal-delay-1">
+            News & <em class="text-columbia-base italic">Milestones</em>
+          </h2>
+          <p class="text-slate-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed reveal reveal-delay-2">
+            Recent publications, conference presentations, awards, and breakthroughs in the ongoing journey of research and discovery.
+          </p>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative">
+        <!-- Center Line (hidden on mobile) -->
+        <div class="timeline-line hidden md:block h-full top-0 bottom-0"></div>
+
+        <!-- Timeline Items -->
+        <div class="space-y-12 md:space-y-0">
+
+          <!-- Item 1: Left -->
+          <div class="timeline-item relative md:flex md:items-center md:mb-16 reveal">
+            <div class="md:w-1/2 md:pr-12 md:text-right">
+              <div class="bg-white rounded-2xl p-6 lg:p-7 border border-slate-100 shadow-sm hover:shadow-lg hover:shadow-columbia-base/5 transition-all duration-500 group">
+                <div class="flex items-center gap-2 mb-3 md:justify-end">
+                  <span class="tag-pill text-cyan-accent bg-cyan-accent/10 px-2.5 py-1 rounded-md font-semibold">Publication</span>
+                  <span class="text-slate-400 text-xs font-mono">Jul 2026</span>
+                </div>
+                <h3 class="font-display text-lg lg:text-xl font-bold text-slate-900 mb-2 group-hover:text-columbia-base transition-colors">Website launched</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Welcome! This site tracks my research, learning apps, and AI experiments. New papers and projects will appear here.</p>
+              </div>
+            </div>
+            <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 z-10">
+              <div class="timeline-dot w-4 h-4 rounded-full bg-white border-[3px] border-columbia-base shadow-md"></div>
+            </div>
+            <div class="md:w-1/2 md:pl-12"></div>
+          </div>
+
+          <!-- Item 2: Right -->
+          <div class="timeline-item relative md:flex md:items-center md:mb-16 reveal">
+            <div class="md:w-1/2 md:pr-12"></div>
+            <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 z-10">
+              <div class="timeline-dot w-4 h-4 rounded-full bg-white border-[3px] border-cyan-accent shadow-md"></div>
+            </div>
+            <div class="md:w-1/2 md:pl-12">
+              <div class="bg-white rounded-2xl p-6 lg:p-7 border border-slate-100 shadow-sm hover:shadow-lg hover:shadow-columbia-base/5 transition-all duration-500 group">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="tag-pill text-columbia-base bg-columbia-pale px-2.5 py-1 rounded-md font-semibold">Conference</span>
+                  <span class="text-slate-400 text-xs font-mono">—</span>
+                </div>
+                <h3 class="font-display text-lg lg:text-xl font-bold text-slate-900 mb-2 group-hover:text-columbia-base transition-colors">Placeholder: a recent talk or paper</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Replace this entry with a real announcement — edit the News section in index.html.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3: Left -->
+          <div class="timeline-item relative md:flex md:items-center md:mb-16 reveal">
+            <div class="md:w-1/2 md:pr-12 md:text-right">
+              <div class="bg-white rounded-2xl p-6 lg:p-7 border border-slate-100 shadow-sm hover:shadow-lg hover:shadow-columbia-base/5 transition-all duration-500 group">
+                <div class="flex items-center gap-2 mb-3 md:justify-end">
+                  <span class="tag-pill text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md font-semibold">Award</span>
+                  <span class="text-slate-400 text-xs font-mono">—</span>
+                </div>
+                <h3 class="font-display text-lg lg:text-xl font-bold text-slate-900 mb-2 group-hover:text-columbia-base transition-colors">Placeholder: an award or milestone</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Replace this entry with a real milestone when you have one to share.</p>
+              </div>
+            </div>
+            <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 z-10">
+              <div class="timeline-dot w-4 h-4 rounded-full bg-white border-[3px] border-emerald-500 shadow-md"></div>
+            </div>
+            <div class="md:w-1/2 md:pl-12"></div>
+          </div>
+
+          <!-- Item 4: Right -->
+          <div class="timeline-item relative md:flex md:items-center reveal">
+            <div class="md:w-1/2 md:pr-12"></div>
+            <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 z-10">
+              <div class="timeline-dot w-4 h-4 rounded-full bg-white border-[3px] border-columbia-base shadow-md"></div>
+            </div>
+            <div class="md:w-1/2 md:pl-12">
+              <div class="bg-white rounded-2xl p-6 lg:p-7 border border-slate-100 shadow-sm hover:shadow-lg hover:shadow-columbia-base/5 transition-all duration-500 group">
+                <div class="flex items-center gap-2 mb-3">
+                  <span class="tag-pill text-violet-600 bg-violet-50 px-2.5 py-1 rounded-md font-semibold">Grant</span>
+                  <span class="text-slate-400 text-xs font-mono">—</span>
+                </div>
+                <h3 class="font-display text-lg lg:text-xl font-bold text-slate-900 mb-2 group-hover:text-columbia-base transition-colors">Placeholder: a project launch</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">Replace this entry with a project or app launch announcement.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center mt-16 reveal">
+        <a href="#" class="inline-flex items-center gap-2 text-columbia-base font-semibold text-sm hover:text-columbia-dark transition-colors group">
+          <span>View Full Timeline</span>
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ABOUT / QUOTE SECTION
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="about" class="relative py-28 lg:py-36 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-columbia-ghost via-white to-columbia-ghost"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-columbia-base/3 rounded-full blur-3xl"></div>
+
+    <div class="max-w-4xl mx-auto px-6 lg:px-10 relative text-center">
+      <div class="reveal">
+        <!-- Quote Mark -->
+        <div class="text-columbia-base/10 text-[8rem] leading-none font-display select-none -mb-12">"</div>
+
+        <blockquote class="font-display text-2xl md:text-3xl lg:text-4xl text-slate-800 leading-snug mb-8 italic">
+          The future of education is not about replacing teachers with machines, but about empowering every learner with an 
+          <span class="text-columbia-base font-semibold">intelligent, adaptive partner</span> that understands their unique journey and amplifies their potential.
+        </blockquote>
+
+        <div class="flex items-center justify-center gap-4">
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-lg">
+            <img src="profile.jpg" alt="Ali" class="w-full h-full object-cover" onerror="this.parentElement.style.display='none'">
+          </div>
+          <div class="text-left">
+            <div class="font-semibold text-slate-900 text-sm">Ali Ebrahimpourlighvani</div>
+            <div class="text-slate-400 text-xs tag-pill">Ph.D. Candidate, Columbia University</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════════════ -->
+  <footer id="contact" class="relative bg-columbia-base overflow-hidden">
+    <!-- Subtle pattern -->
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+    <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20 lg:py-24 relative">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-sm">
+              <span class="text-white font-display font-bold text-lg">A</span>
+            </div>
+            <span class="text-white font-display font-semibold text-lg">Ali Ebrahimpourlighvani</span>
+          </div>
+          <p class="text-white/60 text-sm leading-relaxed max-w-sm mb-6">
+            Doctoral researcher at Teachers College, Columbia University. Exploring the intersection of artificial intelligence and human learning to build more equitable, effective, and inspiring educational futures.
+          </p>
+          <div class="flex items-center gap-3">
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300 group">
+              <svg class="w-4 h-4 text-white/70 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300 group">
+              <svg class="w-4 h-4 text-white/70 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300 group">
+              <svg class="w-4 h-4 text-white/70 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+              </svg>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300 group">
+              <svg class="w-4 h-4 text-white/70 group-hover:text-white transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-5 tracking-wide">Quick Links</h4>
+          <ul class="space-y-3">
+            <li><a href="#research" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Research Areas</a></li>
+            <li><a href="academic.html" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Publications</a></li>
+            <li><a href="#" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Conference Talks</a></li>
+            <li><a href="#" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Teaching</a></li>
+            <li><a href="#" class="text-white/50 hover:text-white text-sm transition-colors duration-300">CV / Resume</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-5 tracking-wide">Contact</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <svg class="w-4 h-4 text-white/40 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+              </svg>
+              <span class="text-white/50 text-sm">ae2936@tc.columbia.edu</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-4 h-4 text-white/40 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+              </svg>
+              <span class="text-white/50 text-sm">Teachers College<br>Columbia University<br>525 W 120th St, New York, NY</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-white/30 text-xs">2026 Ali Ebrahimpourlighvani. All rights reserved.</p>
+        <p class="text-white/20 text-xs">Designed with care at Teachers College, Columbia University</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════════════════════ -->
+  <script>
+    // ── Custom Cursor ──
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorRing = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+
+    // Only enable on non-touch devices
+    if (window.matchMedia('(pointer: fine)').matches) {
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursorDot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+      });
+
+      function animateRing() {
+        ringX += (mouseX - ringX) * 0.15;
+        ringY += (mouseY - ringY) * 0.15;
+        cursorRing.style.transform = `translate(${ringX - 16}px, ${ringY - 16}px)`;
+        requestAnimationFrame(animateRing);
+      }
+      animateRing();
+
+      // Hover states
+      const hoverTargets = document.querySelectorAll('a, button, .bento-card, [data-tilt]');
+      hoverTargets.forEach(el => {
+        el.addEventListener('mouseenter', () => cursorRing.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovering'));
+      });
+    } else {
+      cursorDot.style.display = 'none';
+      cursorRing.style.display = 'none';
+    }
+
+    // ── Scroll Reveal ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Bento Card Tilt Effect ──
+    document.querySelectorAll('[data-tilt]').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / centerY * -6;
+        const rotateY = (x - centerX) / centerX * 6;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      });
+    });
+
+    // ── Navbar Scroll Effect ──
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      if (currentScroll > 60) {
+        navbar.classList.add('glass-strong', 'shadow-sm');
+      } else {
+        navbar.classList.remove('glass-strong', 'shadow-sm');
+      }
+      lastScroll = currentScroll;
+    });
+
+    // ── Mobile Menu ──
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuPanel = document.getElementById('mobileMenuPanel');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    let menuOpen = false;
+
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        mobileMenu.classList.remove('hidden');
+        setTimeout(() => {
+          mobileMenuPanel.classList.remove('translate-x-full');
+        }, 10);
+      } else {
+        mobileMenuPanel.classList.add('translate-x-full');
+        setTimeout(() => {
+          mobileMenu.classList.add('hidden');
+        }, 500);
+      }
+    }
+
+    mobileMenuBtn.addEventListener('click', toggleMenu);
+    mobileMenuOverlay.addEventListener('click', toggleMenu);
+
+    // Close mobile menu on link click
+    mobileMenuPanel.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', toggleMenu);
+    });
+
+    // ── Smooth scroll for anchor links ──
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = 80;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ── Parallax on decorative elements ──
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      document.querySelectorAll('.float-anim, .float-anim-alt').forEach((el, i) => {
+        const speed = i % 2 === 0 ? 0.3 : -0.2;
+        el.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
+  </script>
+<script>
+  (function(){
+    var pages = ['academic.html','learning-apps.html','leadership.html','machine-learning.html','ai-models.html','agentic-ai.html'];
+    document.querySelectorAll('.bento-card').forEach(function(c, i){
+      if (!pages[i]) return;
+      c.setAttribute('role','link'); c.setAttribute('tabindex','0');
+      c.setAttribute('aria-label','Open ' + pages[i].replace('.html','').replace(/-/g,' '));
+      var go = function(){ location.href = pages[i]; };
+      c.addEventListener('click', go);
+      c.addEventListener('keydown', function(e){ if (e.key === 'Enter') go(); });
+    });
+  })();
+</script>
+</body>
+</html>

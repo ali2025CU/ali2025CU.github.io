@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flashcards — a demo learning app by Ali Ebrahimpourlighvani</title>
+  <style>
+    :root { --cu:#0058A8; --cu-deep:#003E75; --cyan:#22D3EE; --ink:#0B1B2B; --paper:#F6F8FB; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:-apple-system,"Segoe UI",Roboto,sans-serif; background:var(--paper); color:var(--ink);
+           min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:2rem 1rem; }
+    h1 { font-family:Georgia,serif; font-size:1.6rem; }
+    .sub { color:#5a6b81; font-size:0.9rem; margin-top:0.3rem; }
+    .card { margin-top:2rem; width:min(440px,92vw); height:260px; perspective:1000px; cursor:pointer; }
+    .card-inner { position:relative; width:100%; height:100%; transition:transform 0.6s cubic-bezier(.2,.7,.2,1); transform-style:preserve-3d; }
+    .card.flipped .card-inner { transform:rotateY(180deg); }
+    .face { position:absolute; inset:0; backface-visibility:hidden; border-radius:20px; display:flex; flex-direction:column;
+            align-items:center; justify-content:center; padding:1.5rem; text-align:center;
+            box-shadow:0 24px 48px -20px rgba(0,62,117,.4); }
+    .front { background:#fff; border:1px solid rgba(11,27,43,.08); }
+    .back  { background:linear-gradient(135deg,var(--cu),var(--cu-deep)); color:#fff; transform:rotateY(180deg); }
+    .face .k { font-size:0.7rem; text-transform:uppercase; letter-spacing:.15em; opacity:.6; margin-bottom:0.8rem; }
+    .face .q { font-size:1.25rem; font-weight:600; line-height:1.45; }
+    .controls { margin-top:1.6rem; display:flex; gap:0.8rem; flex-wrap:wrap; justify-content:center; }
+    button { min-height:44px; padding:0.6rem 1.4rem; border-radius:999px; border:1.5px solid var(--cu);
+             background:#fff; color:var(--cu-deep); font-weight:600; font-size:0.9rem; cursor:pointer; transition:all .25s; }
+    button:hover { background:var(--cu); color:#fff; transform:translateY(-2px); }
+    button.primary { background:var(--cu); color:#fff; }
+    .progress { margin-top:1.4rem; font-size:0.85rem; color:#5a6b81; }
+    .home { margin-top:2.2rem; font-size:0.85rem; }
+    .home a { color:var(--cu); font-weight:600; text-decoration:none; }
+    @media (prefers-reduced-motion: reduce){ .card-inner { transition:none; } }
+  </style>
+</head>
+<body>
+  <h1>Flashcards</h1>
+  <p class="sub">A demo learning app — click the card to flip it. Replace the deck with your own questions.</p>
+
+  <div class="card" id="card" role="button" tabindex="0" aria-label="Flashcard — click to flip">
+    <div class="card-inner">
+      <div class="face front"><div class="k">Question</div><div class="q" id="q"></div></div>
+      <div class="face back"><div class="k">Answer</div><div class="q" id="a"></div></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="prev">← Previous</button>
+    <button class="primary" id="flip">Flip card</button>
+    <button id="next">Next →</button>
+  </div>
+  <div class="progress" id="progress"></div>
+  <p class="home"><a href="learning-apps.html">← Back to Learning Apps</a></p>
+
+  <script>
+    /* EDIT YOUR DECK HERE */
+    const DECK = [
+      { q: "What is 'agentic AI' in education?", a: "AI systems that can plan and act autonomously toward learning goals — e.g., a tutoring agent that adapts its own strategy." },
+      { q: "What does ZPD stand for?", a: "Zone of Proximal Development — what a learner can do with guidance but not yet alone (Vygotsky)." },
+      { q: "What is retrieval practice?", a: "Strengthening memory by actively recalling information — like using these flashcards!" },
+      { q: "What is scaffolding?", a: "Temporary support that helps a learner accomplish a task, gradually removed as competence grows." },
+    ];
+    let i = 0;
+    const card = document.getElementById("card");
+    function show() {
+      card.classList.remove("flipped");
+      document.getElementById("q").textContent = DECK[i].q;
+      document.getElementById("a").textContent = DECK[i].a;
+      document.getElementById("progress").textContent = `Card ${i + 1} of ${DECK.length}`;
+    }
+    function flip() { card.classList.toggle("flipped"); }
+    card.addEventListener("click", flip);
+    card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); flip(); } });
+    document.getElementById("flip").addEventListener("click", flip);
+    document.getElementById("next").addEventListener("click", () => { i = (i + 1) % DECK.length; show(); });
+    document.getElementById("prev").addEventListener("click", () => { i = (i - 1 + DECK.length) % DECK.length; show(); });
+    show();
+  </script>
+</body>
+</html>
